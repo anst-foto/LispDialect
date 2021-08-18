@@ -28,7 +28,7 @@ namespace LispDialectREPL
                         break;
                     default:
                         var res = Core.Parser.Lexer(input);
-                        Console.Info(res.ToString());
+                        Console.PrintCollection(res);
                         break;
                 }
             } while (!exit);

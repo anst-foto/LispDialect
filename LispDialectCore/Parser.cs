@@ -2,21 +2,29 @@
 {
     public static class Parser
     {
-        public static Val Lexer(string input)
+        public static Collection Lexer(string input)
         {
-            var isInt = IsInt(input, out var @int);
-            if (isInt)
+            var strings = input.Split(' ');
+            var res = new Collection();
+            
+            foreach (var str in strings)
             {
-                return new Val {Value = @int, Type = TypeVal.Integer};
+                var isInt = IsInt(str, out var @int);
+                if (isInt)
+                {
+                    res.Push(new Val {Value = @int, Type = TypeVal.Integer});
+                }
+
+                var isDouble = IsDouble(str, out var @double);
+                if (isDouble)
+                {
+                    res.Push(new Val {Value = @double, Type = TypeVal.Double});
+                }
+
+                res.Push(new Val {Value = str, Type = TypeVal.String});
             }
 
-            var isDouble = IsDouble(input, out var @double);
-            if (isDouble)
-            {
-                return new Val {Value = @double, Type = TypeVal.Double};
-            }
-
-            return new Val {Value = input, Type = TypeVal.String};
+            return res;
         }
 
         private static bool IsInt(string input, out int @int)

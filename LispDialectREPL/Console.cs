@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Text;
+using LispDialectCore;
 
 namespace LispDialectREPL
 {
@@ -25,6 +27,14 @@ namespace LispDialectREPL
         {
             System.Console.ForegroundColor = ConsoleColor.DarkRed;
             System.Console.WriteLine($"{DateTime.Now:u} [ERROR] : {message}");
+            System.Console.ResetColor();
+        }
+
+        public static void PrintCollection(Collection collection)
+        {
+            System.Console.ForegroundColor = ConsoleColor.DarkGreen;
+            System.Console.Write($"{DateTime.Now:u} [COLLECTION] : ");
+            collection.ForEach(System.Console.Write);
             System.Console.ResetColor();
         }
     }
