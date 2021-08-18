@@ -1,4 +1,5 @@
 ﻿using System;
+using Core = LispDialectCore;
 
 namespace LispDialectREPL
 {
@@ -6,20 +7,33 @@ namespace LispDialectREPL
     {
         private static void Main()
         {
+            var exit = false;
             do
             {
-                Console.Write(">>>");
-                var input = Console.ReadLine();
-                if (string.IsNullOrEmpty(input))
-                {
+                var input = Console.WaitLine();
+                if (string.IsNullOrEmpty(input) || string.IsNullOrWhiteSpace(input))
+                { 
+                    Console.Error("Пустая строка. Повторите ввод");
                     continue;
                 }
+
                 switch (input)
                 {
                     case "exit":
+                        exit = true;
+                        break;
+                    case "help":
+                        Console.Info("Разработка собственного языка программирования");
+                        //TODO Написать вывод команд
+                        break;
+                    default:
+                        var res = Core.Parser.Lexer(input);
+                        Console.Info(res.ToString());
                         break;
                 }
-            } while (true);
+            } while (!exit);
+            
+            Console.Info("До свидания...");
         }
     }
 }
