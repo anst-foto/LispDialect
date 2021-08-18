@@ -14,10 +14,10 @@ namespace LispDialectREPL
                 {
                     continue;
                 }
-
-                if (input == "exit")
+                switch (input)
                 {
-                    break;
+                    case "exit":
+                        break;
                 }
             } while (true);
         }
