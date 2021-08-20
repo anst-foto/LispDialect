@@ -27,8 +27,8 @@ namespace LispDialectREPL
                         //TODO Написать вывод команд
                         break;
                     default:
-                        var res = Core.Parser.Lexer(input);
-                        Console.PrintCollection(res);
+                        var collection = Core.Parser.Analysis(input);
+                        Console.PrintCollectionLexeme(collection);
                         break;
                 }
             } while (!exit);

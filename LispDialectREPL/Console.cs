@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Text;
 using LispDialectCore;
 
@@ -30,12 +32,19 @@ namespace LispDialectREPL
             System.Console.ResetColor();
         }
 
-        public static void PrintCollection(Collection collection)
+        public static void PrintLexeme(Lexeme lexeme)
         {
             System.Console.ForegroundColor = ConsoleColor.DarkGreen;
-            System.Console.Write($"{DateTime.Now:u} [COLLECTION] : ");
-            collection.ForEach(System.Console.Write);
+            System.Console.Write($"{lexeme.Type} : {lexeme.Value}\t");
             System.Console.ResetColor();
+        }
+
+        public static void PrintCollectionLexeme(Stack<Lexeme> lexemes)
+        {
+            foreach (var lexeme in lexemes)
+            {
+                PrintLexeme(lexeme);
+            }
         }
     }
 }
