@@ -27,8 +27,11 @@ namespace LispDialectREPL
                         //TODO Написать вывод команд
                         break;
                     default:
-                        var collection = Core.Parser.Analysis(input);
+                        var collection = Core.ParserEasy.Analysis(input);
                         Console.PrintCollectionLexeme(collection);
+                        System.Console.WriteLine();
+                        Console.PrintCollection(Core.ParserEasy.AnalysisCollection(input));
+                        
                         break;
                 }
             } while (!exit);

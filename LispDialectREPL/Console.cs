@@ -32,10 +32,10 @@ namespace LispDialectREPL
             System.Console.ResetColor();
         }
 
-        public static void PrintLexeme(Lexeme lexeme)
+        private static void PrintLexeme(Lexeme lexeme)
         {
             System.Console.ForegroundColor = ConsoleColor.DarkGreen;
-            System.Console.Write($"{lexeme.Type} : {lexeme.Value}\t");
+            System.Console.WriteLine($"{lexeme.Type} : {lexeme.Value}");
             System.Console.ResetColor();
         }
 
@@ -45,6 +45,22 @@ namespace LispDialectREPL
             {
                 PrintLexeme(lexeme);
             }
+        }
+
+        public static void PrintCollection(Collection collection)
+        {
+            System.Console.ForegroundColor = ConsoleColor.Green;
+            System.Console.Write("( ");
+            foreach (Item item in collection)
+            {
+                System.Console.Write($"{item.Value.Value} ");
+                if (item.Next == null)
+                {
+                    System.Console.Write(")");
+                }
+            }
+            System.Console.WriteLine();
+            System.Console.ResetColor();
         }
     }
 }
